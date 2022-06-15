@@ -1,9 +1,4 @@
-//
-// Created by Administrator on 2022/6/8.
-//
-
 #include "FFResample.h"
-
 extern "C" {
 #include <libswresample/swresample.h>
 #include <libavcodec/avcodec.h>
@@ -45,6 +40,7 @@ bool FFResample::open(XParameter in, XParameter out) {
 }
 
 XData FFResample::resample(XData inData) {
+    LOGE("FFResample::resample");
     if (inData.size <= 0 || !inData.data) return XData();
     mux.lock();
     if (!actx) {

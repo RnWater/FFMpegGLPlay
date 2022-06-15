@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 2022/6/9.
-//
-
 #include "SLAudioPlay.h"
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
@@ -34,6 +30,7 @@ static SLEngineItf createSL(){
     return en;
 }
 static void pcmCall(SLAndroidSimpleBufferQueueItf bf,void *slPlayer){
+    LOGE("SLAudioPlay::pcmCall");
     SLAudioPlay *sp = (SLAudioPlay *) slPlayer;
     if (!sp) return;
     sp->playCall((void *) bf);
@@ -111,8 +108,8 @@ bool SLAudioPlay::startPlay(XParameter out){
 }
 
 void SLAudioPlay::playCall(void *bufq){
+    LOGE("SLAudioPlay::playCall");
     if (!bufq) return;
-    SLAndroidSimpleBufferQueueItf bf = (SLAndroidSimpleBufferQueueItf) bufq;
     XData d = getData();
     if (d.size <= 0) {
         return;
@@ -128,6 +125,7 @@ void SLAudioPlay::playCall(void *bufq){
     }
     mux.unlock();
     d.drop();
+    LOGE("SLAudioPlay::playCall");
 }
 
 void SLAudioPlay::close() {
@@ -155,4 +153,5 @@ void SLAudioPlay::close() {
     pcmQue = 0;
     eng = 0;
     mux.unlock();
+    LOGE("SLAudioPlay::close");
 }

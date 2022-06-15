@@ -1,13 +1,13 @@
-//
-// Created by Administrator on 2022/6/11.
-//
 #include "IDecode.h"
 #include "IDeMux.h"
 #include "IAudioPlay.h"
 #include "IResample.h"
 #include "IOpenGLVideoView.h"
 #include "IPlayerBuilder.h"
+#include "XLog.h"
+
 IPlayer *IPlayerBuilder::builderPlayer(unsigned char index){
+    LOGE("IPlayerBuilder::builderPlayer index=%d",index);
     IPlayer *play = createPlayer(index);
     //解封装
     IDeMux *de = createDeMux();

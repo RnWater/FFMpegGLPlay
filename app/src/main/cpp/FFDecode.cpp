@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 2022/6/7.
-//
-
 #include "FFDecode.h"
 #include "XLog.h"
 extern "C"{
@@ -73,6 +69,7 @@ bool FFDecode::open(XParameter para,bool isHard){
 }
 
 bool FFDecode::sendPacket(XData pkt){
+    LOGE("FFDecode::sendPacket");
     if (pkt.size<=0||!pkt.data) return false;
     mux.lock();
     if (!codec) {
@@ -87,10 +84,12 @@ bool FFDecode::sendPacket(XData pkt){
     //清理
     av_packet_unref((AVPacket *) pkt.data);
     mux.unlock();
+    LOGE("FFDecode::sendPacket");
     return true;
 }
 
 XData FFDecode::recFrame(){
+    LOGE("FFDecode::recFrame");
     mux.lock();
     if (!codec) {
         mux.unlock();
@@ -119,5 +118,6 @@ XData FFDecode::recFrame(){
     d.pts = frame->pts;
     pts = d.pts;
     mux.unlock();
+    LOGE("FFDecode::recFrame");
     return d;
 }

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, AppComp
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent();
-                    intent.setType("video/*"); //选择视频 (mp4 3gp 是android支持的视频格式)
+                    intent.setType("video/*|image/*"); //选择视频 (mp4 3gp 是android支持的视频格式)
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, 1);
                 }
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, AppComp
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {
             filePath = getImagePath(uri, null);
         }
+        Log.e("我的文件", "--->"+filePath);
         openVideo(filePath);
     }
     //获得图片路径

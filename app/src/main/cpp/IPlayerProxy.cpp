@@ -1,9 +1,6 @@
-//
-// Created by Administrator on 2022/6/11.
-//
-
 #include "IPlayerProxy.h"
 #include "FFPlayerBuilder.h"
+#include "XLog.h"
 
 void IPlayerProxy::close() {
     mux.lock();
@@ -14,6 +11,7 @@ void IPlayerProxy::close() {
 }
 
 void IPlayerProxy::init(void *vm) {
+    LOGE("IPlayerProxy::init");
     mux.lock();
     if (vm) {
         FFPlayerBuilder::initHard(vm);

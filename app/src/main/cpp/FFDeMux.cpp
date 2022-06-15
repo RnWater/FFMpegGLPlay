@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 2022/6/7.
-//
-
 #include "FFDeMux.h"
 #include "XLog.h"
 extern "C"{
@@ -12,6 +8,7 @@ static double r2d(AVRational r){
     return r.num == 0 || r.den == 0 ? 0. : (double)r.num / (double)r.den;
 }
 bool FFDeMux::seek(double pos){
+    LOGE("FFDeMux::seek");
     if (pos <= 0 || pos > 1) {
         return false;
     }
@@ -29,6 +26,7 @@ bool FFDeMux::seek(double pos){
     //往后寻找
     re = av_seek_frame(ic, videoStream, seekPts, AVSEEK_FLAG_FRAME | AVSEEK_FLAG_BACKWARD);
     mux.unlock();
+    LOGE("FFDeMux::seek");
     return re;
 }
 void FFDeMux::close(){
@@ -108,6 +106,7 @@ XParameter FFDeMux::getAPara() {
 }
 //读取一帧
 XData FFDeMux::read(){
+    LOGE("FFDeMux::read");
     mux.lock();
     if (!ic) {
         mux.unlock();
@@ -137,6 +136,7 @@ XData FFDeMux::read(){
     pkt->dts = pkt->dts * (1000 * r2d(ic->streams[pkt->stream_index]->time_base));
     data.pts = (int)pkt->pts;
     mux.unlock();
+    LOGE("FFDeMux::read");
     return data;
 }
 //在解封装里面初始化注册和网络

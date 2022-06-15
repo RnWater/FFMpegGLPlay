@@ -36,6 +36,10 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_henry_ffmpegglplay_MainActivity_openVideo(JNIEnv *env, jobject thiz, jstring path_) {
     const char *path = env->GetStringUTFChars(path_, 0);
+    if (path == nullptr) {
+        env->ReleaseStringUTFChars(path_, path);
+        return;
+    }
     IPlayerProxy::get()->open(path);
     IPlayerProxy::get()->start();
     env->ReleaseStringUTFChars(path_, path);

@@ -10,7 +10,7 @@ class FFPlayerBuilder: public IPlayerBuilder {
 public:
     static void initHard(void *vm);
     static FFPlayerBuilder *get(){
-        FFPlayerBuilder pb;
+        static FFPlayerBuilder pb;
         return &pb;
     }
 protected:

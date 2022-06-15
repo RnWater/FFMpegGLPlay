@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.10057181298351833" />
         <entry key="..\:/Program/FFmpegPlayer/app/src/main/res/drawable/seekbar_style.xml" value="0.212" />
         <entry key="..\:/Program/FFmpegPlayer/app/src/main/res/drawable/seekbar_thumb.xml" value="0.212" />
         <entry key="..\:/Program/FFmpegPlayer/app/src/main/res/layout/activity_main.xml" value="0.25729166666666664" />
